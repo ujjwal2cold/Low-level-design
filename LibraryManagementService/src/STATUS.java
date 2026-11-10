@@ -1,0 +1,4 @@
+enum STATUS {
+   ALLOTTED,
+   AVAILABLE
+}
