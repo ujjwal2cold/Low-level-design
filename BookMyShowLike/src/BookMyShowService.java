@@ -18,7 +18,7 @@ public class BookMyShowService {
    public Optional<Ticket> tryLockingSeat(User u, int showId, Seat seat) {
       Show s = repo.findShowById(showId);
       if (s == null)
-         throw new IllegalArgumentException("Invalid show id " + showId);
+         throw new IllegalArgumentException("Invalid show id: " + showId);
       boolean res = bms.tryBookingShow(u, repo.findShowById(showId), seat);
       if (res) {
          ips.pay(seat.getPrice());
@@ -32,10 +32,10 @@ public class BookMyShowService {
       return Optional.empty();
    }
 
-   public void cancelBooking(Ticket ticket) {
+   public boolean cancelBooking(Ticket ticket) {
       Show s = repo.findShowById(ticket.getShowId());
       if (s == null)
-         throw new IllegalArgumentException("Invalid ticket ");
-      s.cancelSeat(ticket.getSeatId(), ticket.getUser());
+         throw new IllegalArgumentException("Ticket is invalid");
+      return s.cancelSeat(ticket.getSeatId(), ticket.getUser());
    }
 }

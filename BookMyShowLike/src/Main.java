@@ -22,7 +22,8 @@ public class Main {
       Optional<Ticket> t0 = service.tryLockingSeat(u, s0.getId(), seats.getFirst()), t1 = service.tryLockingSeat(u, s0.getId(), seats.getFirst());
       System.out.println(t0);
       System.out.println(t1);
-      service.cancelBooking(t0.get());
+      boolean cancelled = service.cancelBooking(t0.get());
+      System.out.println("Ticket cancelled : " + cancelled);
       System.out.println(service.tryLockingSeat(u, s0.getId(), seats.getFirst()));
    }
 }

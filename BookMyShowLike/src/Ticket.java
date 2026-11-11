@@ -2,7 +2,6 @@ public class Ticket {
    private int showId;
    private String seatId;
    private User u;
-
    Ticket(int showId, String seatId, User u) {
       this.showId = showId;
       this.seatId = seatId;
